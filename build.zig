@@ -1,6 +1,6 @@
 const std = @import("std");
 const FileSource = std.build.FileSource;
-const Mode = std.builtin.Mode;
+const Mode = std.builtin.OptimizeMode;
 
 const EXAMPLES = [_][]const u8{
     "arc",
@@ -58,7 +58,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const cairo = b.addSharedLibrary(.{
+    const cairo = b.addLibrary(.{
         .name = "cairo",
         .root_module = cairo_mod,
     });
@@ -71,7 +71,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const xcb = b.addSharedLibrary(.{
+    const xcb = b.addLibrary(.{
         .name = "xcb",
         .root_module = xcb_mod,
     });
@@ -83,7 +83,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const pangocairo = b.addSharedLibrary(.{
+    const pangocairo = b.addLibrary(.{
         .name = "pangocairo",
         .root_module = pangocairo_mod,
     });
@@ -101,9 +101,11 @@ pub fn build(b: *std.Build) void {
         const name = "test-" ++ mode_str;
         const desc = "Run all tests in " ++ mode_str ++ " mode.";
         const tests = b.addTest(.{
-            .root_source_file = b.path("src/pangocairo.zig"),
-            .target = target,
-            .optimize = test_mode,
+            .root_module = b.createModule(.{
+                .root_source_file = b.path("src/pangocairo.zig"),
+                .target = target,
+                .optimize = test_mode,
+            }),
         });
         // tests.setNamePrefix(mode_str ++ " ");
         tests.linkLibC();
@@ -129,9 +131,11 @@ pub fn build(b: *std.Build) void {
     inline for (EXAMPLES) |name| {
         const example = b.addExecutable(.{
             .name = name,
-            .root_source_file = b.path("examples" ++ std.fs.path.sep_str ++ name ++ ".zig"),
-            .target = target,
-            .optimize = optimize,
+            .root_module = b.createModule(.{
+                .root_source_file = b.path("examples" ++ std.fs.path.sep_str ++ name ++ ".zig"),
+                .target = target,
+                .optimize = optimize,
+            }),
         });
         example.root_module.addImport("cairo", cairo.root_module);
 
