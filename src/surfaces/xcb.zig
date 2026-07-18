@@ -2,7 +2,7 @@
 //! The XCB surface is used to render cairo graphics to X Window System windows
 //! and pixmaps using the XCB library.
 //! https://www.cairographics.org/manual/cairo-XCB-Surfaces.html
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const Device = @import("device.zig").Device;
 const Error = @import("../utilities/error_handling.zig").Error;
 

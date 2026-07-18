@@ -1,7 +1,7 @@
 //! Cairo Surfaces
 //! https://www.cairographics.org/manual/cairo-cairo-surface-t.html
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 
 const error_handling = @import("../utilities/error_handling.zig");
 const Error = error_handling.Error;

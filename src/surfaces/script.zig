@@ -1,6 +1,6 @@
 //! Rendering to replayable scripts.
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const enums = @import("../enums.zig");
 const Content = enums.Content;
 const ScriptMode = enums.ScriptMode;

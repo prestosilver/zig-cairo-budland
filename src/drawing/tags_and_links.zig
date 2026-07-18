@@ -1,6 +1,6 @@
 //! Hyperlinks and document structure.
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 
 /// https://www.cairographics.org/manual/cairo-Tags-and-Links.html#cairo-tag-begin
 pub fn tagBegin(c_ptr: *c.struct__cairo, tag_name: []const u8, attributes: ?[]const u8) void {

@@ -1,6 +1,6 @@
 //! Cairo Patterns.
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const enums = @import("../enums.zig");
 const PatternType = enums.PatternType;
 const Extend = enums.Extend;

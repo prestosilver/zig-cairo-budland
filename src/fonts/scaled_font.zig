@@ -1,7 +1,7 @@
 //! Font face at particular size and options.
 //! https://cairographics.org/manual/cairo-cairo-scaled-font-t.html
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 
 pub var te: c.cairo_text_extents_t = undefined;
 

@@ -2,7 +2,7 @@
 //! Devices are the abstraction Cairo employs for the rendering system used by a
 //! cairo_surface_t.
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const enums = @import("../enums.zig");
 const DeviceType = enums.DeviceType;
 const Format = enums.Format;

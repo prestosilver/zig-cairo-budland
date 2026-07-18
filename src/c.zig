@@ -8,5 +8,5 @@ pub const c = @cImport({
     @cInclude("cairo/cairo-svg.h");
     @cInclude("cairo/cairo-xcb.h");
     @cInclude("cairo/cairo.h");
-    @cInclude("pango/pangocairo.h");
+    // @cInclude("pango/pangocairo.h");
 });

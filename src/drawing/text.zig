@@ -1,7 +1,7 @@
 //! Rendering text and glyphs
 //! https://cairographics.org/manual/cairo-text.html
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const Error = @import("../utilities/error_handling.zig").Error;
 
 // TODO: don't use this module. It doesn't work. c.cairo_glyph_allocate()

@@ -1,7 +1,7 @@
 //! Compile-time and run-time version checks.
 //! https://cairographics.org/manual/cairo-Version-Information.html
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 
 const version_encoded = c.CAIRO_VERSION_ENCODE(c.CAIRO_VERSION_MAJOR, c.CAIRO_VERSION_MINOR, c.CAIRO_VERSION_MICRO);
 

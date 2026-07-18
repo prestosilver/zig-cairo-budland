@@ -4,7 +4,7 @@
 //! The supported image formats are those defined in cairo_format_t.
 //! https://www.cairographics.org/manual/cairo-Image-Surfaces.html
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const Error = @import("../utilities/error_handling.zig").Error;
 const Format = @import("../enums.zig").Format;
 

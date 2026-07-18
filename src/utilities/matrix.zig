@@ -1,6 +1,6 @@
 //! Generic matrix operations
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 
 // I guess this struct is not really necessary, since we can use
 // allocator.create() on the original C struct.

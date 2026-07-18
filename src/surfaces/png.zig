@@ -2,7 +2,7 @@
 //! The PNG functions allow reading PNG images into image surfaces, and writing
 //! any surface to a PNG file.
 //! https://www.cairographics.org/manual/cairo-PNG-Support.html
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const Error = @import("../utilities/error_handling.zig").Error;
 
 /// https://www.cairographics.org/manual/cairo-PNG-Support.html#cairo-image-surface-create-from-png

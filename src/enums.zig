@@ -1,6 +1,6 @@
 //! Enums used in Cairo.
 const std = @import("std");
-const c = @import("c.zig");
+const c = @import("c.zig").c;
 
 /// https://cairographics.org/manual/cairo-cairo-t.html#cairo-antialias-t
 pub const Antialias = enum {

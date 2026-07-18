@@ -62,8 +62,8 @@ pub fn build(b: *std.Build) void {
         .name = "cairo",
         .root_module = cairo_mod,
     });
-    cairo.linkSystemLibrary("cairo");
-    cairo.linkSystemLibrary("pango");
+    cairo_mod.linkSystemLibrary("cairo", .{});
+    cairo_mod.linkSystemLibrary("pango", .{});
 
     const xcb_mod = b.addModule("xcb", .{
         .root_source_file = b.path("src/xcb.zig"),
@@ -75,7 +75,7 @@ pub fn build(b: *std.Build) void {
         .name = "xcb",
         .root_module = xcb_mod,
     });
-    xcb.linkSystemLibrary("xcb");
+    xcb_mod.linkSystemLibrary("xcb", .{});
 
     const pangocairo_mod = b.addModule("pangocairo", .{
         .root_source_file = b.path("src/pangocairo.zig"),
@@ -100,19 +100,21 @@ pub fn build(b: *std.Build) void {
         const mode_str = comptime modeToString(test_mode);
         const name = "test-" ++ mode_str;
         const desc = "Run all tests in " ++ mode_str ++ " mode.";
+        const test_mod = b.createModule(.{
+            .root_source_file = b.path("src/pangocairo.zig"),
+            .target = target,
+            .optimize = test_mode,
+            .link_libc = true,
+        });
+
         const tests = b.addTest(.{
-            .root_module = b.createModule(.{
-                .root_source_file = b.path("src/pangocairo.zig"),
-                .target = target,
-                .optimize = test_mode,
-            }),
+            .root_module = test_mod,
         });
         // tests.setNamePrefix(mode_str ++ " ");
-        tests.linkLibC();
-        tests.linkSystemLibrary("xcb");
-        tests.linkSystemLibrary("pango");
-        tests.linkSystemLibrary("cairo");
-        tests.linkSystemLibrary("pangocairo");
+        test_mod.linkSystemLibrary("xcb", .{});
+        test_mod.linkSystemLibrary("pango", .{});
+        test_mod.linkSystemLibrary("cairo", .{});
+        test_mod.linkSystemLibrary("pangocairo", .{});
         const test_step = b.step(name, desc);
         test_step.dependOn(&tests.step);
         test_all_modes_step.dependOn(test_step);
@@ -135,6 +137,7 @@ pub fn build(b: *std.Build) void {
                 .root_source_file = b.path("examples" ++ std.fs.path.sep_str ++ name ++ ".zig"),
                 .target = target,
                 .optimize = optimize,
+                .link_libc = true,
             }),
         });
         example.root_module.addImport("cairo", cairo.root_module);
@@ -145,13 +148,12 @@ pub fn build(b: *std.Build) void {
         if (shouldIncludePango(name)) {
             example.root_module.addImport("pangocairo", pangocairo.root_module);
         }
-        example.linkLibC();
-        example.linkSystemLibrary("cairo");
-        example.linkSystemLibrary("pango");
+        example.root_module.linkSystemLibrary("cairo", .{});
+        example.root_module.linkSystemLibrary("pango", .{});
         if (shouldIncludeXcb(name)) {
-            example.linkSystemLibrary("xcb");
+            example.root_module.linkSystemLibrary("xcb", .{});
         }
-        example.linkSystemLibrary("pangocairo");
+        example.root_module.linkSystemLibrary("pangocairo", .{});
         // b.installArtifact(example);
         // example.install(); // uncomment to build ALL examples (it takes ~2 minutes)
         // examples_step.dependOn(&example.step);

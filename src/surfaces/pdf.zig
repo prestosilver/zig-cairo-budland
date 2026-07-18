@@ -2,7 +2,7 @@
 //! The PDF surface is used to render cairo graphics to Adobe PDF files and is a
 //! multi-page vector surface backend.
 //! https://www.cairographics.org/manual/cairo-PDF-Surfaces.html
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const Error = @import("../utilities/error_handling.zig").Error;
 const enums = @import("../enums.zig");
 const PdfMetadata = enums.PdfMetadata;

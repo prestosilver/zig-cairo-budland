@@ -1,6 +1,6 @@
 //! Creating paths and manipulating path data.
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const PathDataType = @import("../enums.zig").PathDataType;
 const Error = @import("../utilities/error_handling.zig").Error;
 

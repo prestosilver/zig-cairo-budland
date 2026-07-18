@@ -1,6 +1,6 @@
 //! Manipulating the current transformation matrix.
 const std = @import("std");
-const c = @import("../c.zig");
+const c = @import("../c.zig").C;
 const enums = @import("../enums.zig");
 const Matrix = @import("../utilities/matrix.zig").Matrix;
 

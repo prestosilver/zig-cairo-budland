@@ -583,17 +583,22 @@ pub const Unit = enum(u4) {
     }
 };
 
-pub const surface = @import("surfaces/surface.zig");
-pub const path = @import("drawing/path.zig");
-pub const pattern = @import("drawing/pattern.zig");
-pub const tags_and_links = @import("drawing/tags_and_links.zig");
-pub const text = @import("drawing/text.zig");
-pub const transformations = @import("drawing/transformations.zig");
-pub const context = @import("drawing/context.zig");
+const surface = @import("surfaces/surface.zig");
+const path = @import("drawing/path.zig");
+const pattern = @import("drawing/pattern.zig");
+const tags_and_links = @import("drawing/tags_and_links.zig");
+const text = @import("drawing/text.zig");
+const transformations = @import("drawing/transformations.zig");
+const context = @import("drawing/context.zig");
 
-pub const scaled_font = @import("fonts/scaled_font.zig");
-pub const font_options = @import("fonts/font_options.zig");
+const scaled_font = @import("fonts/scaled_font.zig");
+const font_options = @import("fonts/font_options.zig");
 
-pub const matrix = @import("utilities/matrix.zig");
-pub const error_handling = @import("utilities/error_handling.zig");
-pub const version_information = @import("utilities/version_information.zig");
+const matrix = @import("utilities/matrix.zig");
+const error_handling = @import("utilities/error_handling.zig");
+const version_information = @import("utilities/version_information.zig");
+
+pub const Surface = surface.Surface;
+pub const Context = context.Context;
+pub const Error = error_handling.Error;
+pub const Pattern = pattern.Pattern;

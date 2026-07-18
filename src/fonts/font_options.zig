@@ -2,7 +2,7 @@
 //! https://cairographics.org/manual/cairo-cairo-font-options-t.html
 const std = @import("std");
 const log = std.log;
-const c = @import("../c.zig");
+const c = @import("../c.zig").c;
 const Error = @import("../utilities/error_handling.zig").Error;
 const enums = @import("../enums.zig");
 
